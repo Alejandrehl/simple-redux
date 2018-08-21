@@ -28,12 +28,15 @@
       //Y también toma dos parametros (state, action)
       function reducer(state, action){
         var newState = Object.assign({}, state)
+
         if(action.type === "aum"){
           newState.cantidad = state.cantidad + 1
-          console.log(self.state.cantidad)
-          console.log(newState.cantidad)
+          return newState
+        }else if(action.type === "dis"){
+          newState.cantidad = state.cantidad - 1
           return newState
         }
+
         return state
       }
 
@@ -44,10 +47,18 @@
         type: "aum"
       }
 
+      var actionDisminuir = {
+        type: "dis"
+      }
+
       //V. DISPATCH ejecuta la llamada al STORE y pasa el tipo
       //de acción
       var aumentar = function(){
         store.dispatch(actionAumentar)
+      }
+
+      var disminuir = function(){
+        store.dispatch(actionDisminuir)
       }
 
       var numero = document.getElementById("numero")
